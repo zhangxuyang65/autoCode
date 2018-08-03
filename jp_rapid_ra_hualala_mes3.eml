@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component jdk="1.8" jdk_type="JavaSDK">
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<excludeFolder url="file://$MODULE_DIR$/bin"/>
+	</contentEntry>
+	<contentEntry url="file://$MODULE_DIR$/bin"/>
+	<lib name="freemarker-2.3.23.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/jp_rapid_ra_hualala_mes3/lib/freemarker-2.3.23.jar!/"/>
+	</lib>
+	<lib name="mysql-connector-java-5.1.43.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/jp_rapid_ra_hualala_mes3/lib/mysql-connector-java-5.1.43.jar!/"/>
+	</lib>
+	<lib name="ojdbc14.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/jp_rapid_ra_hualala_mes3/lib/ojdbc14.jar!/"/>
+	</lib>
+	<lib name="rapid-generator-3.9.3.20100923.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/jp_rapid_ra_hualala_mes3/lib/rapid-generator-3.9.3.20100923.jar!/"/>
+	</lib>
+	<lib name="sqljdbc.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/jp_rapid_ra_hualala_mes3/lib/sqljdbc.jar!/"/>
+	</lib>
+</component>

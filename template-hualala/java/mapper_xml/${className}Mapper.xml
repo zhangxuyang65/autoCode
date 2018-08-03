@@ -1,0 +1,210 @@
+<#assign className = table.className>
+<#assign classNameFirstLower =
+table.classNameFirstLower>   
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<#macro mapperEl value>${r"#{"}${value}}</#macro>
+<#macro namespace>${className}.</#macro>
+<mapper namespace="${package_mapper_xml}.${className}Mapper">
+	<!-- table映射实体对象 -->
+	<resultMap id="RM_${className}" type="${package_model}.${className}">
+		<#list table.columns as column>
+		<result property="${column.columnNameLower}" column="${column.sqlName}" />
+		</#list>
+	</resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="select_columns">
+		    <![CDATA[
+			<#list table.columns as column>${column.sqlName}<#if column_has_next>,</#if></#list>
+		    ]]>
+	</sql>
+
+	<!-- 增加 -->
+	<insert id="insert" parameterType="${package_model}.${className}"
+		useGeneratedKeys="true" keyProperty="${table.idColumn.columnNameFirstLower}">
+		insert into ${table.sqlName}
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<#list table.columns as column>
+			<#if column.sqlName=='group_id'>
+				group_id,
+			</#if>
+			<#if column.sqlName!='group_id'>
+			<if	test="${column.columnNameLower} != null <#if column.jdbcType=='VARCHAR'>and ${column.columnNameLower} != ''</#if> ">
+				${column.sqlName} ,
+			</if>
+			</#if>
+			</#list>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<#list table.columns as column>
+			<#if column.sqlName=='group_id'>
+				${symbol3}{groupId},
+			</#if>
+			<#if column.sqlName!='group_id'>
+			<if	test="${column.columnNameLower} != null <#if column.jdbcType=='VARCHAR'>and ${column.columnNameLower} != ''</#if> ">
+				<@mapperEl column.columnNameFirstLower/> ,
+			</if>
+			</#if>
+			</#list>
+		</trim>
+	</insert>
+	<!-- 更新 -->
+	<update id="update" parameterType="${package_model}.${className}">
+		UPDATE ${table.sqlName}
+		<set>
+			<#list table.notPkColumns as column>
+			<if	test="${column.columnNameLower} != null <#if column.jdbcType=='VARCHAR'>and ${column.columnNameLower} != ''</#if> ">
+				${column.sqlName} = <@mapperEl
+				column.columnNameFirstLower/><#if column_has_next>,</#if>
+			</if>
+			</#list>
+		</set>
+		WHERE
+		<#list table.compositeIdColumns as column>
+		${column.sqlName} =
+		<@mapperEl column.columnNameLower/><#if column_has_next> AND </#if>
+		</#list>
+		and group_id=${symbol3}{groupId}
+	</update>
+	<!-- 查询行数 -->
+	<select id="count" resultType="long" parameterType="${package_query}.${className}Query">
+		SELECT count(1) FROM ${table.sqlName}
+		<include refid="where" />
+	</select>
+	<!-- 查询集合  -->
+	<select id="queryList" resultMap="RM_${className}"
+		parameterType="${package_query}.${className}Query">
+		SELECT
+		<include refid="select_columns" />
+		FROM ${table.sqlName}
+		<include refid="where_order_by_paging" />
+	</select>
+	
+	<!-- where条件 -->
+	<sql id="where">
+		<where>
+			<include refid="sql_if_not_null" />
+		</where>
+	</sql>
+	<sql id="where_order_by">
+		<where>
+			<include refid="sql_if_not_null" />
+		</where>
+		<include refid="sql_order_by" />
+	</sql>
+	<sql id="where_order_by_paging">
+		<where>
+			<include refid="sql_if_not_null" />
+		</where>
+		<include refid="sql_order_by" />
+	</sql>
+	<!-- 排序 -->
+	<sql id="sql_order_by">
+		<if test="sortName != null  ">
+			ORDER BY ${symbol4}{sortName} ${symbol4}{sortOrder}
+		</if>
+		<#if driverType=='sqlserver'>
+		<if test="sortName == null ">
+			ORDER BY ${primaryKey}
+		</if>
+		</#if>
+	</sql>
+	<!-- 判断空值 -->
+	<sql id="sql_if_not_null">
+		<#list table.columns as column>
+		<#if column.sqlName=='group_id'>
+			AND group_id = ${symbol3}{groupId}
+		</#if>
+		<#if column.sqlName!='group_id'>
+		<if	test="${column.columnNameLower} != null <#if column.jdbcType=='VARCHAR'>and ${column.columnNameLower} != ''</#if> ">
+			AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower/>
+		</if>
+		</#if>
+		</#list>
+		<!-- <include refid="sql_if_varchar_not_null" /> -->
+		<include refid="sql_if_ids_not_null" />
+	</sql>
+	<!-- 判断ids空值 -->
+	<sql id="sql_if_ids_not_null">
+		<if test="ids != null and id==null ">
+			AND id 
+			<if test="ids.size() ==1 ">=<foreach collection="ids" item="item" index="index" separator=",">${symbol3}{item}</foreach></if>
+			<if test="ids.size() >1 ">
+				in (<foreach collection="ids" item="item" index="index" separator=",">${symbol3}{item}</foreach>)
+			</if>
+		</if>
+	</sql>
+	
+	<!-- 批量增加 -->
+	<insert id="batchInsert" useGeneratedKeys="true" parameterType="java.util.List">
+		insert into ${table.sqlName}
+		<foreach collection="list" item="item" index="index" separator=","><if test="index==0">
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<#list table.columns as column>
+			<#if column.sqlName!='${primaryKey}'>
+			<#if column.sqlName=='group_id'>
+						group_id,
+			</#if>
+			<#if column.sqlName!='group_id'>
+			<if test="item.${column.columnNameLower} != null">
+				${column.sqlName},</if>	</#if>
+			</#if>
+				</#list>
+		</trim>	</if></foreach>
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				<#list table.columns as column>	<#if column.sqlName!='${primaryKey}'>
+				<#if column.sqlName=='group_id'>
+							${symbol3}{item.groupId},
+						</#if>
+						<#if column.sqlName!='group_id'>
+				<if test="item.${column.columnNameLower} != null">
+					${symbol3}{item.${column.columnNameFirstLower}},
+				</if></#if></#if></#list>
+			</trim>
+		</foreach>
+	</insert>
+	<!-- 批量伪删除 -->
+	<update id="batchDelete" parameterType="${package_query}.${className}Query">
+		UPDATE ${table.sqlName} SET action = 2
+		WHERE id
+		<if test="ids != null and id==null ">
+			<if test="ids.size() ==1 ">=<foreach collection="ids" item="item" index="index" separator=",">${symbol3}{item}</foreach></if>
+			<if test="ids.size() >1 ">
+				in (<foreach collection="ids" item="item" index="index" separator=",">${symbol3}{item}</foreach>)
+			</if>
+		</if>
+		<if test="id != null ">
+			=${symbol3}{id}
+		</if>
+		and group_id=${symbol3}{groupId}
+	</update>
+	<!-- 批量更新 -->
+	<update id="batchUpdate" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" ${batchUpdateForeach} separator=";">
+			UPDATE ${table.sqlName}
+			<set>
+				<trim suffixOverrides=",">
+					<#list table.notPkColumns as column>
+					<if	test="item.${column.columnNameLower} != null">
+						${column.sqlName} =${symbol3}{item.${column.columnNameFirstLower}} ,
+					</if>
+					</#list>
+				</trim>
+			</set>
+			WHERE
+			<#list table.compositeIdColumns as column>
+			${column.sqlName} =
+			${symbol3}{item.${column.columnNameLower}}
+			<#if column_has_next>
+			AND
+			</#if>
+			</#list>
+			and group_id=${symbol3}{item.groupId}
+		</foreach>
+	</update>
+</mapper>
+
