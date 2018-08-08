@@ -24,7 +24,7 @@ public interface ${className}Service{
      * @param list
      * @return
      */
-    ServiceResult<Integer>		insertOrUpdate(List<${className}> list);
+    ServiceResult<Integer>		insertOrUpdate(Long groupID,List<${className}> list);
     /**
      * id!=null || ( ids!=null and ids.size()>0 ) goto delete 
      * @param query

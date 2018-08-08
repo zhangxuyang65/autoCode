@@ -96,7 +96,7 @@ public class ${className}ServiceImpl implements ${className}Service{
 	 * @return
 	 */
 	@Override
-	public ServiceResult<Integer> insertOrUpdate(List<${className}> list) {
+	public ServiceResult<Integer> insertOrUpdate(Long groupID,List<${className}> list) {
 		log.info("insertOrUpdate params:" + JSON.toJSONString(list));
 		ServiceResult<Integer> sr = new ServiceResult<Integer>();
 		try {
