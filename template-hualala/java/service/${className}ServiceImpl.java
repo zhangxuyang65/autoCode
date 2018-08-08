@@ -199,7 +199,7 @@ public class ${className}ServiceImpl implements ${className}Service{
 	}
 
 	@Override
-	public ServiceResult<Integer> delete(Set<Long> ids) {
+	public ServiceResult<Integer> delete(Long groupID,Set<Long> ids) {
 		log.info("delete params:" + ids);
 		${className}Query query = new ${className}Query();
 		query.setIds(ids);
@@ -237,7 +237,7 @@ public class ${className}ServiceImpl implements ${className}Service{
 	 * @return
 	 */
 	@Override
-	public ServiceResult<List<${className}>> query(Set<Long> ids) {
+	public ServiceResult<List<${className}>> query(Long groupID,Set<Long> ids) {
 		log.info("query params:" + ids);
 		ServiceResult<List<${className}>> sr =  new ServiceResult<>();
 		${className}Query query = new ${className}Query();
@@ -296,7 +296,7 @@ public class ${className}ServiceImpl implements ${className}Service{
 	}
 	
 	@Override
-    public ServiceResult<Long> sync(List<${className}> dataList) {
+    public ServiceResult<Long> sync(Long groupID,List<${className}> dataList) {
 		log.info("sync params:" + JSON.toJSONString(dataList));
         try {
             Long data = ((Long) this.${classNameLower}Manager.sync(dataList));
@@ -385,7 +385,7 @@ public class ${className}ServiceImpl implements ${className}Service{
     }
 
     @Override
-    public ServiceResult<Integer> batchInsert(List<${className}> list) {
+    public ServiceResult<Integer> batchInsert(Long groupID,List<${className}> list) {
 		log.info("batchInsert params:" + JSON.toJSONString(list));
         try {
             return new ServiceResult<Integer>(this.${classNameLower}Manager.batchInsert(list));
@@ -407,7 +407,7 @@ public class ${className}ServiceImpl implements ${className}Service{
     }
 
     @Override
-    public ServiceResult<Integer> batchUpdate(List<${className}> list) {
+    public ServiceResult<Integer> batchUpdate(Long groupID,List<${className}> list) {
 		log.info("batchUpdate params:" + JSON.toJSONString(list));
         try {
             return new ServiceResult<Integer>(this.${classNameLower}Manager.batchUpdate(list));

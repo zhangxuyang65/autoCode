@@ -32,7 +32,7 @@ public interface ${className}Service{
      */
     ServiceResult<Integer>		delete(${className}Query query);
     ServiceResult<Integer>		delete(long id);
-    ServiceResult<Integer>		delete(Set<Long> ids);
+    ServiceResult<Integer>		delete(Long groupID,Set<Long> ids);
     /**
      * by id goto query
      * @param id
@@ -44,7 +44,7 @@ public interface ${className}Service{
      * @param ids
      * @return
      */
-    ServiceResult<List<${className}>>	query(Set<Long> ids);
+    ServiceResult<List<${className}>>	query(Long groupID,Set<Long> ids);
         ServiceResult<PageInfo<${className}>>	query(${className}Query query);
     
     /**
@@ -54,7 +54,7 @@ public interface ${className}Service{
      * @param dataList
      * @return
      */
-    public ServiceResult<Long> sync(List<${className}> dataList);
+    public ServiceResult<Long> sync(Long groupID,List<${className}> dataList);
     /**
      * 增加
      * 
@@ -132,7 +132,7 @@ public interface ${className}Service{
      *            要增加的对象集合
      * @return 成功增加的行数
      */
-    public ServiceResult<Integer> batchInsert(List<${className}> list);
+    public ServiceResult<Integer> batchInsert(Long groupID,List<${className}> list);
 
 
     /**
@@ -153,5 +153,5 @@ public interface ${className}Service{
      *            要新的对象集合
      * @return 0:失败;1:成功
      */
-    public ServiceResult<Integer> batchUpdate(List<${className}> list);
+    public ServiceResult<Integer> batchUpdate(Long groupID,List<${className}> list);
 }
