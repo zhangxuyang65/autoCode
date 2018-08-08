@@ -148,7 +148,7 @@ public class ${className}Controller {
 	public Map<String, ?> listData(HttpServletResponse response,@RequestBody String strJson,@RequestAttribute("user") User user) {
 		log.info("listData param:"+strJson);
 		${className}Query query=JSON.parseObject(strJson,${className}Query.class);
-		if(query.getGroupId()==null||query.getGroupId()==0||query.getOrgId()==null||query.getOrgId()==0){
+		if(query.getGroupId()==null||query.getGroupId()==0||query.getDistributionId()==null||query.getDistributionId()==0){
 			throw new InvalidParamException(OptCodeConstant.ERROR_PARAM_FORMAT.getCode(),"集团groupID或配送中心orgID为空，不能操作数据！");
 		}
 		this.filterQueryParams(query);

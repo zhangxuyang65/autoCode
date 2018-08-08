@@ -8,7 +8,7 @@
 	<!-- 包路径 -->
 	<entry key="basepackage">com.hualala.${updatePackageName}</entry>
 	<!-- 类作者 -->
-	<entry key="author"> hualala.许建.2017-11-21</entry>
+	<entry key="author"> hualala.杜引强.2017-11-21</entry>
 	
 	<entry key="outRoot">F:/generator-output</entry>
 	
