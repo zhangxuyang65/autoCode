@@ -66,7 +66,7 @@ public class ${className}Controller {
 		log.info("insert param:"+strJson);
 		List<${className}> listParam=ControllerUtil.strJsonToArray(strJson,${className}.class);
 		this.filterInsertParams(listParam,user);
-		ServiceResult<Integer> sr=this.${classNameLower}Service.insertOrUpdate(listParam);
+		ServiceResult<Integer> sr=this.${classNameLower}Service.insertOrUpdate(user.getGroupId(),listParam);
 		log.info("insert result:"+JSON.toJSONString(sr));
 		if(sr.getSuccess()){
 			return new DataResult(sr.getErrorCode(), sr.getMessage()).toMap();
