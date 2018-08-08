@@ -120,7 +120,7 @@ public class ${className}Controller {
 		log.info("update param:"+strJson);
 		List<${className}> listParam=ControllerUtil.strJsonToArray(strJson,${className}.class);
 		this.filterUpdateParams(listParam,user);
-		ServiceResult<Integer> sr=this.${classNameLower}Service.insertOrUpdate(listParam);
+		ServiceResult<Integer> sr=this.${classNameLower}Service.insertOrUpdate(user.getGroupId(),listParam);
 		log.info("update result"+JSON.toJSONString(sr));
 		if(sr.getSuccess()){
 			return new DataResult(sr.getErrorCode(), sr.getMessage()).toMap();
