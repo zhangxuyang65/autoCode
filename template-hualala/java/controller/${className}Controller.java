@@ -79,7 +79,7 @@ public class ${className}Controller {
 			if(rom.getGroupId()==null||rom.getGroupId()==0){
 				throw new InvalidParamException(OptCodeConstant.ERROR_PARAM_FORMAT.getCode(),"集团groupID为空，不能操作数据！");
 			}
-			rom.setAction(0);
+			rom.setAction(1);
 			rom.setActionBy(user.getUserName());
 			rom.setActionTime(DateUtil.getActionTime());
 			rom.setCreateBy(user.getUserName());

@@ -262,7 +262,7 @@ public class ${className}ServiceImpl implements ${className}Service{
 		try {
 			long count =0;
 			if(query.getAction()==null){
-				query.setAction(0);
+				query.setAction(1);
 			}
 			List<${className}> list = this.${classNameLower}Manager.queryList(query);
 			PageInfo<${className}> pageInfo = new PageInfo(list);

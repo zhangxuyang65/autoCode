@@ -169,7 +169,7 @@ table.classNameFirstLower>
 	</insert>
 	<!-- 批量伪删除 -->
 	<update id="batchDelete" parameterType="${package_query}.${className}Query">
-		UPDATE ${table.sqlName} SET action = 1
+		UPDATE ${table.sqlName} SET action = 2
 		WHERE id
 		<if test="ids != null and id==null ">
 			<if test="ids.size() ==1 ">=<foreach collection="ids" item="item" index="index" separator=",">${symbol3}{item}</foreach></if>
