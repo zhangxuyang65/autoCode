@@ -202,7 +202,7 @@ public class ${className}Controller {
      * @param response
      */
 	@RequestMapping(value = "/export", method = RequestMethod.POST)
-    public void export(HttpServletResponse response,@ModelAttribute ${className}Query query,@RequestAttribute("user") User user) {
+    public void export(HttpServletResponse response,@RequestBody ${className}Query query,@RequestAttribute("user") User user) {
         this.filterQueryParams(query);
     	List<ExcelBean> listEB=new ArrayList<ExcelBean>();
     	//这里写要导出的列,不建议导出id列
