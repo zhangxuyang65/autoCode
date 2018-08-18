@@ -257,7 +257,7 @@ public class ${className}ServiceImpl implements ${className}Service{
 		log.info("query params:" + JSON.toJSONString(query));
 		ServiceResult<PageInfo<${className}>> sr = new ServiceResult<>();
 		if (query.getPageSize() != -1) {
-			PageHelper.startPage(query.getPageNo(), query.getPageSize());
+			PageHelper.startPage(query.getPageNum(), query.getPageSize());
 		}
 		try {
 			long count =0;

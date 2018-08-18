@@ -162,7 +162,7 @@ public class ${className}Controller {
 			if(sr.getSuccess()){
 				return new ListResult(body.getTotal(),body.getPageSize(),body.getPageNum(),body.getPages(),body.getList()).toMap();
 			}else{
-				return new ListResult(sr.getErrorCode(),sr.getMessage(), sr.getSuccess(),query.getPageSize(), query.getPageNo()).toMap();
+				return new ListResult(sr.getErrorCode(),sr.getMessage(), sr.getSuccess(),query.getPageSize(), query.getPageNum()).toMap();
 			}
 		}else{
 			if(sr.getSuccess()){
