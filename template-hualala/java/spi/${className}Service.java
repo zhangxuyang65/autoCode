@@ -54,7 +54,7 @@ public interface ${className}Service{
      * @param dataList
      * @return
      */
-    public ServiceResult<Long> sync(Long groupID,List<${className}> dataList);
+     ServiceResult<Long> sync(Long groupID,List<${className}> dataList);
     /**
      * 增加
      * 
@@ -63,7 +63,7 @@ public interface ${className}Service{
      *            要增加的对象
      * @return 对象
      */
-    public ServiceResult<${className}> insert(${className} t);
+     ServiceResult<${className}> insert(${className} t);
 
     /**
      * 删除
@@ -73,7 +73,7 @@ public interface ${className}Service{
      *            要删除的对象
      * @return 0:失败;1:成功
      */
-    public ServiceResult<Integer> delete(${className} t);
+     ServiceResult<Integer> delete(${className} t);
 
     /**
      * 更新
@@ -83,7 +83,7 @@ public interface ${className}Service{
      *            要更新的对象
      * @return 0:失败;1:成功
      */
-    public ServiceResult<Integer> update(${className} t);
+     ServiceResult<Integer> update(${className} t);
 
     /**
      * 按主键查询
@@ -93,7 +93,7 @@ public interface ${className}Service{
      *            过虑参数
      * @return 对象
      */
-    public ServiceResult<${className}> selectByPrimaryKey(long id);
+     ServiceResult<${className}> selectByPrimaryKey(long id);
 
     /**
      * 查询条数
@@ -102,7 +102,7 @@ public interface ${className}Service{
      * @param query
      * @return
      */
-    public ServiceResult<Long> count(${className}Query query);
+     ServiceResult<Long> count(${className}Query query);
 
     /**
      * 按表XXX列查询集合
@@ -112,7 +112,7 @@ public interface ${className}Service{
      *            参数内必需字段：columnName(数据库表的列名);list(要查询的数据数组 )
      * @return 集合
      */
-    public ServiceResult<List<${className}>> selectByColumn(${className}Query query);
+     ServiceResult<List<${className}>> selectByColumn(${className}Query query);
 
     /**
      * 查询集合
@@ -122,7 +122,7 @@ public interface ${className}Service{
      *            查询时的过虑条件
      * @return 集合
      */
-    public ServiceResult<List<${className}>> queryList(${className}Query query);
+     ServiceResult<List<${className}>> queryList(${className}Query query);
 
     /**
      * 批量增加
@@ -132,7 +132,7 @@ public interface ${className}Service{
      *            要增加的对象集合
      * @return 成功增加的行数
      */
-    public ServiceResult<Integer> batchInsert(Long groupID,List<${className}> list);
+     ServiceResult<Integer> batchInsert(Long groupID,List<${className}> list);
 
 
     /**
@@ -143,7 +143,7 @@ public interface ${className}Service{
      *            要删除的对象主键的集合
      * @return 0:失败;1:成功
      */
-    public ServiceResult<Integer> batchDelete(${className}Query query);
+     ServiceResult<Integer> batchDelete(${className}Query query);
 
     /**
      * 批量更新
@@ -153,5 +153,5 @@ public interface ${className}Service{
      *            要新的对象集合
      * @return 0:失败;1:成功
      */
-    public ServiceResult<Integer> batchUpdate(Long groupID,List<${className}> list);
+     ServiceResult<Integer> batchUpdate(Long groupID,List<${className}> list);
 }
