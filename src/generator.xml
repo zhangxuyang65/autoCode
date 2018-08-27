@@ -3,7 +3,7 @@
 <properties>
 	<!-- 哗啦啦 WMS项目包名在此修改 -->
 	
-	<entry key="updateParentPackageName">base</entry>
+	<entry key="updateParentPackageName">pmc</entry>
 	<entry key="updatePackageName">mes3</entry>
 	<!-- 包路径 -->
 	<entry key="basepackage">com.hualala.${updatePackageName}</entry>

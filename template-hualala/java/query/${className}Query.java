@@ -4,6 +4,7 @@ package ${package_query};
 
 import com.alibaba.fastjson.JSON;
 import lombok.Data;
+import java.math.BigDecimal;
 import ${package_base_query};
 
 <#list table.columns as column>
