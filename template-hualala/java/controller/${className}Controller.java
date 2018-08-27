@@ -62,7 +62,7 @@ public class ${className}Controller {
 	 */
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, ?> insert(HttpServletResponse response,@RequestBody String strJson,@RequestAttribute("user") User user) {
+	public Map<String, ?> insert(@RequestBody String strJson,@RequestAttribute("user") User user) {
 		log.info("insert param:"+strJson);
 		List<${className}> listParam=ControllerUtil.strJsonToArray(strJson,${className}.class);
 		this.filterInsertParams(listParam,user);
@@ -76,9 +76,6 @@ public class ${className}Controller {
 	}
 	private void filterInsertParams(List<${className}> listParam,User user){
 		for(${className} rom : listParam){
-			if(rom.getGroupId()==null||rom.getGroupId()==0){
-				throw new InvalidParamException(OptCodeConstant.ERROR_PARAM_FORMAT.getCode(),"集团groupID为空，不能操作数据！");
-			}
 			rom.setAction(1);
 			rom.setActionBy(user.getUserName());
 			rom.setActionTime(DateUtil.getActionTime());
@@ -96,9 +93,6 @@ public class ${className}Controller {
 	public Map<String, ?> del(HttpServletResponse response,@RequestBody String strJson,@RequestAttribute("user") User user) {
 		log.info("del param:"+strJson);
 		${className}Query query = JSON.parseObject(strJson,${className}Query.class);
-		if(query.getGroupId()==null||query.getGroupId()==0){
-			throw new InvalidParamException(OptCodeConstant.ERROR_PARAM_FORMAT.getCode(),"集团groupID为空，不能操作数据！");
-		}
 		query.setActionBy(user.getUserName());
 		query.setActionTime(DateUtil.getActionTime());
 		ServiceResult<Integer> sr=this.${classNameLower}Service.delete(query);
@@ -130,9 +124,6 @@ public class ${className}Controller {
 	}
 	private void filterUpdateParams(List<${className}> listParam,User user){
 		for(${className} rom : listParam){
-			if(rom.getGroupId()==null||rom.getGroupId()==0){
-				throw new InvalidParamException(OptCodeConstant.ERROR_PARAM_FORMAT.getCode(),"集团groupID为空，不能操作数据！");
-			}
 			rom.setActionBy(user.getUserName());
 			rom.setActionTime(DateUtil.getActionTime());
 		}
@@ -148,10 +139,9 @@ public class ${className}Controller {
 	public Map<String, ?> listData(HttpServletResponse response,@RequestBody String strJson,@RequestAttribute("user") User user) {
 		log.info("listData param:"+strJson);
 		${className}Query query=JSON.parseObject(strJson,${className}Query.class);
-		if(query.getGroupId()==null||query.getGroupId()==0||query.getDistributionId()==null||query.getDistributionId()==0){
-			throw new InvalidParamException(OptCodeConstant.ERROR_PARAM_FORMAT.getCode(),"集团groupID或配送中心orgID为空，不能操作数据！");
-		}
-		this.filterQueryParams(query);
+		query.setAction(1);
+		query.setSortName("id");
+		query.setSortOrder("desc");
 		ServiceResult<PageInfo<${className}>> sr = this.${classNameLower}Service.query(query);
 		log.info("listData result"+JSON.toJSONString(sr));
 		PageInfo<${className}> body = sr.getBody();
@@ -171,14 +161,6 @@ public class ${className}Controller {
 				return new ListResult(sr.getErrorCode(),sr.getMessage(),sr.getSuccess()).toMap();
 			}
 		}
-	}
-	private void filterQueryParams(${className}Query query){
-		/*Set<Long> setLongWids=SSOUtils.setLongCUWId(null);
-		if(setLongWids!=null){
-			if(query.getFwarehouse()==null){
-				query.setWarehouseIds(setLongWids);
-			}
-		}*/
 	}
 	private List<${className}Vo> filterEntityToVo(List<${className}> body){
 		List<${className}Vo> result=ControllerUtil.copyArray(body, ${className}Vo.class);
@@ -203,7 +185,7 @@ public class ${className}Controller {
      */
 	@RequestMapping(value = "/export", method = RequestMethod.POST)
     public void export(HttpServletResponse response,@RequestBody ${className}Query query,@RequestAttribute("user") User user) {
-        this.filterQueryParams(query);
+		query.setAction(1);
     	List<ExcelBean> listEB=new ArrayList<ExcelBean>();
     	//这里写要导出的列,不建议导出id列
         <#list table.columns as column><#if column.sqlName!='${primaryKey}'>
