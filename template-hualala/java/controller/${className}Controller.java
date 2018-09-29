@@ -146,7 +146,7 @@ public class ${className}Controller {
 		log.info("listData result"+JSON.toJSONString(sr));
 		PageInfo<${className}> body = sr.getBody();
 		if(null == body) {
-			return new ListResult(sr.getErrorCode(),sr.getMessage(),false).toMap();
+			return new ListResult(sr.getErrorCode(),sr.getMessage(),sr.getSuccess()).toMap();
 		}
 		if(body.getPageSize()>0&&body.getPageNum()>0){
 			if(sr.getSuccess()){

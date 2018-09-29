@@ -139,31 +139,35 @@ table.classNameFirstLower>
 	<!-- 批量增加 -->
 	<insert id="batchInsert" useGeneratedKeys="true" parameterType="java.util.List">
 		insert into ${table.sqlName}
-		<foreach collection="list" item="item" index="index" separator=","><if test="index==0">
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<#list table.columns as column>
-			<#if column.sqlName!='${primaryKey}'>
-			<#if column.sqlName=='group_id'>
-						group_id,
-			</#if>
-			<#if column.sqlName!='group_id'>
-			<if test="item.${column.columnNameLower} != null">
-				${column.sqlName},</if>	</#if>
-			</#if>
-				</#list>
-		</trim>	</if></foreach>
+				<#if column.sqlName!='${primaryKey}'  && column.sqlName!='action'>
+					${column.sqlName},
+				</#if>
+			</#list>
+		</trim>
 		values
 		<foreach collection="list" item="item" index="index"
 			separator=",">
 			<trim prefix="(" suffix=")" suffixOverrides=",">
-				<#list table.columns as column>	<#if column.sqlName!='${primaryKey}'>
-				<#if column.sqlName=='group_id'>
-							${symbol3}{item.groupId},
-						</#if>
-						<#if column.sqlName!='group_id'>
-				<if test="item.${column.columnNameLower} != null">
-					${symbol3}{item.${column.columnNameFirstLower}},
-				</if></#if></#if></#list>
+				<#list table.columns as column>
+					<#if column.sqlName!='${primaryKey}'  && column.sqlName!='action'>
+						<if test="item.${column.columnNameLower} != null">
+							${symbol3}{item.${column.columnNameFirstLower}},
+						</if>
+						<if test="item.${column.columnNameLower} == null">
+							<#if column.jdbcSqlTypeName=='VARCHAR'>
+								'',
+							</#if>
+							<#if column.jdbcSqlTypeName=='DECIMAL'>
+								0.00000000,
+							</#if>
+							<#if column.jdbcSqlTypeName!='DECIMAL' && column.jdbcSqlTypeName!='VARCHAR'>
+								0,
+							</#if>
+						</if>
+					</#if>
+				</#list>
 			</trim>
 		</foreach>
 	</insert>
