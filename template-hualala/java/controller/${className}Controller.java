@@ -62,7 +62,7 @@ public class ${className}Controller {
 	 */
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, ?> insert(@RequestBody String strJson,@RequestAttribute("user") User user) {
+	public Map<String, ?> insert(@RequestBody String strJson,@RequestAttribute("user") User user) throws Exception {
 		log.info("insert param:"+strJson);
 		List<${className}> listParam=ControllerUtil.strJsonToArray(strJson,${className}.class);
 		this.filterInsertParams(listParam,user);
@@ -90,7 +90,7 @@ public class ${className}Controller {
 	 */
 	@RequestMapping(value = "/del", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, ?> del(HttpServletResponse response,@RequestBody String strJson,@RequestAttribute("user") User user) {
+	public Map<String, ?> del(HttpServletResponse response,@RequestBody String strJson,@RequestAttribute("user") User user) throws Exception {
 		log.info("del param:"+strJson);
 		${className}Query query = JSON.parseObject(strJson,${className}Query.class);
 		query.setActionBy(user.getUserName());
@@ -110,7 +110,7 @@ public class ${className}Controller {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, ?> update(HttpServletResponse response,@RequestBody String strJson,@RequestAttribute("user") User user) {
+	public Map<String, ?> update(HttpServletResponse response,@RequestBody String strJson,@RequestAttribute("user") User user) throws Exception {
 		log.info("update param:"+strJson);
 		List<${className}> listParam=ControllerUtil.strJsonToArray(strJson,${className}.class);
 		this.filterUpdateParams(listParam,user);
@@ -136,7 +136,7 @@ public class ${className}Controller {
 	 */
 	@RequestMapping(value = "/listData", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, ?> listData(HttpServletResponse response,@RequestBody String strJson,@RequestAttribute("user") User user) {
+	public Map<String, ?> listData(HttpServletResponse response,@RequestBody String strJson,@RequestAttribute("user") User user) throws Exception {
 		log.info("listData param:"+strJson);
 		${className}Query query=JSON.parseObject(strJson,${className}Query.class);
 		query.setAction(1);
@@ -184,7 +184,7 @@ public class ${className}Controller {
      * @param response
      */
 	@RequestMapping(value = "/export", method = RequestMethod.POST)
-    public void export(HttpServletResponse response,@RequestBody ${className}Query query,@RequestAttribute("user") User user) {
+    public void export(HttpServletResponse response,@RequestBody ${className}Query query,@RequestAttribute("user") User user) throws Exception {
 		query.setAction(1);
     	List<ExcelBean> listEB=new ArrayList<ExcelBean>();
     	//这里写要导出的列,不建议导出id列
