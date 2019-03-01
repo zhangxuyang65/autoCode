@@ -183,13 +183,13 @@ public class ${className}Controller {
      * @param query
      * @param response
      */
-	@RequestMapping(value = "/export", method = RequestMethod.POST)
-    public void export(HttpServletResponse response,@RequestBody ${className}Query query,@RequestAttribute("user") User user) throws Exception {
+	@RequestMapping(value = "/export")
+    public void export(HttpServletResponse response,${className}Query query,@RequestAttribute("user") User user) throws Exception {
 		query.setAction(1);
     	List<ExcelBean> listEB=new ArrayList<ExcelBean>();
     	//这里写要导出的列,不建议导出id列
         <#list table.columns as column><#if column.sqlName!='${primaryKey}'>
-        listEB.add(new ExcelBean("${column.columnNameLower}", "${column.columnAlias!}"));
+        listEB.add(new ExcelBean("${column.columnNameLower}", "${column.columnAlias!}",ExcelUtil.NUM));
         </#if></#list>
 		ServiceResult<PageInfo<${className}>> sr = this.${classNameLower}Service.query(query);
 		PageInfo<${className}> body = sr.getBody();
