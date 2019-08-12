@@ -4,13 +4,13 @@
 	<!-- 哗啦啦 WMS项目包名在此修改 -->
 
 	<entry key="updateParentPackageName">pmc</entry>
-	<entry key="updatePackageName">mes3</entry>
+	<entry key="mes3UpdatePackageName">mes3</entry>
 	<!-- 包路径 -->
 	<entry key="basepackage">com.hualala.${updatePackageName}</entry>
 	<!-- 类作者 -->
-	<entry key="author"> hualala.duyinqiang.2019-08-08</entry>
+	<entry key="author"> hualala.WangQi.2019-01-14</entry>
 
-	<entry key="outRoot">D:/generator-output</entry>
+	<entry key="outRoot">F:/generator-output</entry>
 
 
 	<!-- 需要移除的表名前缀,使用逗号进行分隔多个前缀,示例值: t_,v_ -->
@@ -55,11 +55,11 @@
 	<entry key="symbol4">$</entry>
 
 	<entry key="package_base_query">com.hualala.mes3.model.QueryParam</entry>
-	<entry key="package_base_service">com.hualala.${updatePackageName}.base.service</entry>
-	<entry key="package_base_service_impl">com.hualala.${updatePackageName}.base.service.impl</entry>
-	<entry key="package_base_manager">com.hualala.${updatePackageName}.base.manager</entry>
-	<entry key="package_base_manager_impl">com.hualala.${updatePackageName}.base.manager.impl</entry>
-	<entry key="package_base_mapper">com.hualala.${updatePackageName}.base.mapper</entry>
+	<entry key="package_base_service">com.hualala.${mes3UpdatePackageName}.base.service</entry>
+	<entry key="package_base_service_impl">com.hualala.${mes3UpdatePackageName}.base.service.impl</entry>
+	<entry key="package_base_manager">com.hualala.${mes3UpdatePackageName}.base.manager</entry>
+	<entry key="package_base_manager_impl">com.hualala.${mes3UpdatePackageName}.base.manager.impl</entry>
+	<entry key="package_base_mapper">com.hualala.${mes3UpdatePackageName}.base.mapper</entry>
 
 
 	<!-- 包路径配置 -->
