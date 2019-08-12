@@ -3,12 +3,12 @@
 <properties>
 	<!-- 哗啦啦 WMS项目包名在此修改 -->
 
-	<entry key="updateParentPackageName">emc</entry>
+	<entry key="updateParentPackageName">pmc</entry>
 	<entry key="updatePackageName">mes3</entry>
 	<!-- 包路径 -->
 	<entry key="basepackage">com.hualala.${updatePackageName}</entry>
 	<!-- 类作者 -->
-	<entry key="author"> hualala.zxy.2018-08-08</entry>
+	<entry key="author"> hualala.duyinqiang.2019-08-08</entry>
 
 	<entry key="outRoot">D:/generator-output</entry>
 
@@ -20,10 +20,10 @@
 	<!-- Mysql -->
 	<entry key="batchUpdateForeach">open="" close=""</entry>
 	<entry key="driverType">mysql</entry>
-	<entry key="jdbc.url">jdbc:mysql://172.16.0.75:3308/db_supply_chain_mes?useUnicode=true&amp;characterEncoding=UTF-8</entry>
+	<entry key="jdbc.url">jdbc:mysql://dohko.mysql.003.master.hualala.com/db_supply_chain_mes?useUnicode=true&amp;characterEncoding=UTF-8</entry>
 	<entry key="jdbc.driver">com.mysql.jdbc.Driver</entry>
-	<entry key="jdbc.username">root</entry>
-	<entry key="jdbc.password">hualalamysql</entry>
+	<entry key="jdbc.username">supply_chain</entry>
+	<entry key="jdbc.password">utFTUgDi</entry>
 
 	<!-- sqlserver  
 	<entry key="batchUpdateForeach">open="begin" close="end;"</entry>

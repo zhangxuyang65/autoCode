@@ -2,16 +2,17 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<!-- 哗啦啦 WMS项目包名在此修改 -->
-	
+
 	<entry key="updateParentPackageName">pmc</entry>
 	<entry key="updatePackageName">mes3</entry>
 	<!-- 包路径 -->
 	<entry key="basepackage">com.hualala.${updatePackageName}</entry>
 	<!-- 类作者 -->
-	<entry key="author"> hualala.杜引强.2017-11-21</entry>
-	
-	<entry key="outRoot">F:/generator-output</entry>
-	
+	<entry key="author"> hualala.duyinqiang.2019-08-08</entry>
+
+	<entry key="outRoot">D:/generator-output</entry>
+
+
 	<!-- 需要移除的表名前缀,使用逗号进行分隔多个前缀,示例值: t_,v_ -->
 	<entry key="tableRemovePrefixes">tbl_mes_,tbl_</entry>
 	<!-- 表主键 -->
@@ -19,11 +20,11 @@
 	<!-- Mysql -->
 	<entry key="batchUpdateForeach">open="" close=""</entry>
 	<entry key="driverType">mysql</entry>
-	<entry key="jdbc.url">jdbc:mysql://172.16.32.154:3306/db_supply_chain_mes?useUnicode=true&amp;characterEncoding=UTF-8</entry>
-	<entry key="jdbc.driver">com.mysql.jdbc.Driver</entry> 
-	<entry key="jdbc.username">root</entry>
-	<entry key="jdbc.password">hualalamysql</entry>
-	
+	<entry key="jdbc.url">jdbc:mysql://dohko.mysql.003.master.hualala.com/db_supply_chain_mes?useUnicode=true&amp;characterEncoding=UTF-8</entry>
+	<entry key="jdbc.driver">com.mysql.jdbc.Driver</entry>
+	<entry key="jdbc.username">supply_chain</entry>
+	<entry key="jdbc.password">utFTUgDi</entry>
+
 	<!-- sqlserver  
 	<entry key="batchUpdateForeach">open="begin" close="end;"</entry>
 	<entry key="driverType">sqlserver</entry>
@@ -31,15 +32,15 @@
 	<entry key="jdbc.driver">com.microsoft.sqlserver.jdbc.SQLServerDriver</entry>
 	<entry key="jdbc.username">sa</entry>
 	<entry key="jdbc.password">sa</entry>
-	-->	
+	-->
 	<!-- oracle需要指定jdbc.schema,并且可能要大写，其它数据库忽略此项配置  -->
 	<entry key="jdbc.schema"></entry>
 	<entry key="jdbc.catalog"></entry>
-	
+
 	<!-- 数据库类型至java类型映射  -->
 	<entry key="java_typemapping.java.sql.Timestamp">Date</entry>
 	<entry key="java_typemapping.java.sql.Date">Date</entry>
-	<entry key="java_typemapping.java.sql.Time">Date</entry>	
+	<entry key="java_typemapping.java.sql.Time">Date</entry>
 	<entry key="java_typemapping.java.lang.Byte">Integer</entry>
 	<entry key="java_typemapping.java.lang.Short">Integer</entry>
 	<entry key="java_typemapping.java.lang.Integer">Integer</entry>
@@ -48,35 +49,35 @@
 	<entry key="java_typemapping.java.math.BigDecimal">BigDecimal</entry>
 	<entry key="java_typemapping.java.sql.Clob">String</entry>
 	<entry key="java_typemapping.java.lang.Boolean">Boolean</entry>
-	
+
 	<!-- 其它自定义标签 -->
 	<entry key="symbol3">#</entry>
 	<entry key="symbol4">$</entry>
-	
+
 	<entry key="package_base_query">com.hualala.mes3.model.QueryParam</entry>
 	<entry key="package_base_service">com.hualala.${updatePackageName}.base.service</entry>
 	<entry key="package_base_service_impl">com.hualala.${updatePackageName}.base.service.impl</entry>
 	<entry key="package_base_manager">com.hualala.${updatePackageName}.base.manager</entry>
 	<entry key="package_base_manager_impl">com.hualala.${updatePackageName}.base.manager.impl</entry>
 	<entry key="package_base_mapper">com.hualala.${updatePackageName}.base.mapper</entry>
-	
-	
+
+
 	<!-- 包路径配置 -->
 	<entry key="package_model">com.hualala.${updatePackageName}.${updateParentPackageName}.domain</entry>
 	<entry key="package_query">com.hualala.${updatePackageName}.${updateParentPackageName}.query</entry>
 	<entry key="package_vo">com.hualala.${updatePackageName}.${updateParentPackageName}.vo</entry>
-	
+
 	<entry key="package_service">com.hualala.${updatePackageName}.${updateParentPackageName}.service</entry>
 	<entry key="package_service_impl">com.hualala.${updatePackageName}.${updateParentPackageName}.service.impl</entry>
-	
+
 	<entry key="package_manager">com.hualala.${updatePackageName}.${updateParentPackageName}.manager</entry>
 	<entry key="package_manager_impl">com.hualala.${updatePackageName}.${updateParentPackageName}.manager.impl</entry>
-	
+
 	<entry key="package_mapper">com.hualala.${updatePackageName}.${updateParentPackageName}.mapper</entry>
 	<entry key="package_mapper_xml">com.hualala.${updatePackageName}.${updateParentPackageName}.mapper</entry>
-	
+
 	<entry key="package_test_service">com.hualala.${updatePackageName}.${updateParentPackageName}</entry>
-	
+
 	<entry key="basepackage_controller">com.hualala.${updatePackageName}.${updateParentPackageName}.controller</entry>
-	
+
 </properties>
