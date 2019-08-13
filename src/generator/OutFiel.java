@@ -9,7 +9,7 @@ public class OutFiel {
 		g.deleteOutRootDir(); // 删除生成器的输出目录
 		
 		for (String table : tables) {
-			g.generateByTable(table, "template-hualala");
+			g.generateByTable(table, "jp_rapid_ra_hualala_mes3/template-hualala");
 		}
 		// 打开文件夹
 		Runtime.getRuntime().exec("cmd.exe /c start "+ GeneratorProperties.getRequiredProperty("outRoot"));
