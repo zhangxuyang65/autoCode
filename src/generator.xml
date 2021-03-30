@@ -8,9 +8,9 @@
 	<!-- 包路径 -->
 	<entry key="basepackage">com.hualala.${updatePackageName}</entry>
 	<!-- 类作者 -->
-	<entry key="author"> hualala.duyinqiang.2019-08-08</entry>
+	<entry key="author"> hualala.zxy.2019-08-08</entry>
 
-	<entry key="outRoot">D:/generator-output</entry>
+	<entry key="outRoot">/Users/zxy/generator-output</entry>
 
 
 	<!-- 需要移除的表名前缀,使用逗号进行分隔多个前缀,示例值: t_,v_ -->
